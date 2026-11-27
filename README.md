@@ -1,0 +1,114 @@
+# Chiubay（玖白）
+
+**从零养育一个会自己长大的智能体 —— 一项长期个人 AGI 研究计划。**
+
+**仓库描述**：`玖白：从零养育一个会自己长大的智能体，长期个人 AGI 机制研究，全栈自研训练 | Chiubay: a long-term personal AGI research project growing an agent from scratch with a self-built stack.`
+
+**话题标签**（20 个，仅英文）：`agi`、`research`、`machine-learning`、`neural-network`、`autograd`、`from-scratch`、`numpy`、`python`、`developmental-robotics`、`cognitive-architecture`、`intrinsic-motivation`、`local-first`、`no-pretraining`、`long-term`、`experiment`、`tensor`、`backpropagation`、`agent`、`artificial-life`、`open-research`
+
+![Status](https://img.shields.io/badge/status-research%20prototype-yellow?style=flat-square)
+[![License](https://img.shields.io/badge/license-Apache--2.0%20%2F%20MIT-blue?style=flat-square)](./LICENSING.md)
+
+> 本仓库为**占位发布**：先公开研究计划、边界与已有实验记录，源码与实验产物将按阶段整理后提交。
+
+名字说明：中文名「玖白」是一个完整的名字；英文名 Chiubay 是威妥玛式音译变体，读 "chew-bay"。
+「玖」为九，「白」为空白：从白纸开始，一岁一岁长。
+
+---
+
+## 现状
+
+| 项 | 状态 |
+|---|---|
+| M0 自研张量栈 | ✅ 工具层保留：张量、手写反传、SGD/Adam、checkpoint；10 项测试通过 |
+| M1 LSE / M2 沙盒 / Inner Screen | 🔁 全部 `DELETE`（MDP 框架遗留，仅 GridWorld 连通性修复与 IQM 修正保留） |
+| **v4.0 两周期架构** | 🟡 **当前权威**：六环相扣；周期一交付"婴儿"，周期二是"被养成的产物" |
+| ③ 认同环（E3 敏感期） | ✅ 印记比 3.94×，对照 1.11×；⚠️ 效应低于噪声底，待 5 seeds 加固 |
+| ①②④⑤⑥ 环 | ⬜ 仍在纸面 |
+| 两周期命题另一半（E5 不同养育→不同形态） | ⬜ 未做 |
+| 人级 AGI | ❌ 不作为当前交付承诺；当前只交付"婴儿" |
+
+当前可运行：`experiments/m0_xor.py`、`experiments/m1_lse.py`（历史）、
+`experiments/e3_identity.py`（**当前主线**）。
+
+---
+
+## 硬约束
+
+- **单人**，每周约 20 小时，周期 10 年+。
+- **本机完成**：Apple M5 Max，128 GiB 统一内存，无 CUDA、无外部集群。
+- **全栈自研**：架构、学习规则、训练循环、评估协议自己写；Python/NumPy 只作数学运算器。
+  禁用 torch、TensorFlow、JAX、transformers、sklearn、gymnasium，禁用预训练权重。
+- **训练方式自研**（见 [ADR-002](docs/adr/ADR-002-self-designed-training.md)）：
+  禁止策略梯度、折扣回报、价值函数驱动更新。奖励**不进入任何参数更新**。
+- **诚实标注**：报告只写“验证了什么”，不写“达成 AGI”。
+
+量级差距：本机约 10¹⁴ FLOPS；人级基座需 10²⁴–10²⁶ FLOPs，差 4–6 个数量级。
+这是物理边界，不是优化问题。项目定位是长期机制研究，不是 AGI 交付。
+
+---
+
+## 快速开始
+
+```bash
+cd "/Users/ntars/Documents/Github/Chiubay"
+python3 -m venv .venv
+.venv/bin/pip install -r requirements.txt          # 目前只有 NumPy
+.venv/bin/python -m unittest discover -s tests -v  # 30 项
+.venv/bin/python experiments/m0_xor.py
+.venv/bin/python experiments/m1_lse.py             # 历史实验
+.venv/bin/python experiments/e3_identity.py         # 当前主线：敏感期实验
+```
+
+---
+
+## 目录
+
+```
+Chiubay/
+├── docs/                    边界说明书、养育大纲、里程碑验收记录、ADR
+├── src/runtime/             自研张量、算子、梯度、优化器、序列化、损失
+├── src/child/               LSE 等历史模块（DELETE 标记）；新机制尚未落地
+├── tests/                   梯度、吞吐、合规、分化测试
+├── experiments/             M0/M1 历史实验；e3_identity.py（当前主线）
+└── runs/                    实验产物（gitignore）
+```
+
+---
+
+## 文档
+
+| 文档 | 内容 |
+|---|---|
+| [**两周期架构 v4.0**](docs/09-两周期架构.md) | **当前权威**：周期一婴儿 / 周期二完全体；六环相扣与依赖表；E3 实测结果 |
+| [全周期创新标准 v3.0](docs/07-全周期创新标准与重构.md) | 标准有效：四栏差异审计、三个取消 |
+| [创新点四栏重审](docs/08-创新点四栏重审.md) | 历史重审记录：A 树突分室降级 |
+| [底层创新方案 v2.0](docs/06-底层创新方案.md) | 四个创新点的原始表述（A 已降级） |
+| [完整方案 v1.0](docs/05-完整方案.md) | 前一版：目标与评估体系仍有效，架构部分已作废 |
+| [边界说明书](docs/00-边界说明书.md) | 目标、约束、不可行项、决策记录 |
+| [养育大纲](docs/01-养育大纲.md) | 按发育阶段 S0–S5 组织：房间、课程、退场、青春期 |
+| [M0 验收记录](docs/02-M0验收记录.md) | 自研栈闭环结果 |
+| [M1 验收记录](docs/03-M1验收记录.md) | LSE 层结果与三项关键修正 |
+| [M2 验收记录](docs/04-M2验收记录.md) | GridWorld + REINFORCE 对照基线（**非主线**） |
+| [ADR-002](docs/adr/ADR-002-self-designed-training.md) | 训练方式自研条款：判定标准与否决记录 |
+| [开发手册](DEVELOPMENT.md) | v1.0（M0/M1/M2 时代），待按 v4.0 重写 |
+
+---
+
+## 三个当前结论
+
+1. **两周期判据**：交付物是"可被养成的婴儿"，不是"会做事的系统"。判据从成功率换成可塑性、敏感期、结构可生长。
+2. **E3 已过方向关**：无全局损失下，早期扰动残留是晚期的 3.94×（对照 1.11×）。机制是"活动量棘轮 + 锚点阻抗"；用误差做棘轮会在学会后自动停转，失败。
+3. **声称的边界**：六环中只有 ③ 有实现；E3 效应仍低于噪声底，需 5 seeds 加固。报告只写"验证了什么"。
+
+---
+
+## 许可证
+
+Copyright © 2026 星玖工作室 Ntarstudio. Licensed under Apache-2.0 / MIT.
+
+按目录分层：代码（含未来提交的 `src/`、`experiments/`、`tools/`）为 Apache-2.0；本文档、`docs/` 下的设计稿与实验记录为 MIT。全文见 [LICENSE](./LICENSE) 与 [LICENSE-MIT](./LICENSE-MIT)，路由表见 [LICENSING.md](./LICENSING.md)。
+
+## NOTICE 合规声明
+
+当前为占位仓库，未引入第三方运行时依赖；依赖与商标声明在引入时登记于 [NOTICE](./NOTICE)。

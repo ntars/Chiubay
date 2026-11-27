@@ -1,0 +1,8 @@
+Chiubay
+Copyright © 2026 星玖工作室 Ntarstudio
+
+本仓库代码采用 Apache License 2.0，文档与设计内容采用 MIT，分层路由见 LICENSING.md。
+项目名称、图标与商标不随代码授权。
+
+第三方依赖
+当前仓库为占位状态，未引入第三方运行时依赖；后续依赖清单在引入时登记于此。
